@@ -12,7 +12,7 @@ namespace Sample_PJ_Core.Models.Editdata
         public string cTANTOUSHA { get; set; }
 
         public string sTANTOUSHA { get; set; }
-        //自社担当者
+        //自社担当者chan
 
     }
 }
