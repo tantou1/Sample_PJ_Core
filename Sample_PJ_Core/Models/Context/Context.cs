@@ -63,6 +63,8 @@ namespace Sample_PJ_Core.Models.Context
             return ("Data save Successfully");
         }
 
+        public void DeleteTantousha(string id)        {            using (MySqlConnection conn = GetConnection())            {                string delete_query = "delete from m_j_tantousha where cTANTOUSHA='" + id + "'";                MySqlCommand cmd = new MySqlCommand(delete_query, conn);                conn.Open();                cmd.ExecuteNonQuery();                conn.Close();            }
 
+        }
     }
 }
