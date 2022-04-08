@@ -57,16 +57,34 @@ namespace Sample_PJ_Core.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    string resp = _context.CreateTantousha(tantousha);
-                    TempData["msg"] = resp;
+                    _context.CreateTantousha(tantousha);
                     return RedirectToAction("Index");
                 }
             }
             catch (Exception ex)
             {
-                TempData["msg"] = ex.Message;
+                return View();
             }
-            return View("Index");
+            return View();
+        }
+
+        public ActionResult Edit(string id)
+        {
+            return View(_context.GetAllTantousha().Find(Tantousha => Tantousha.cTANTOUSHA == id));
+        }
+
+        [HttpPost]
+        public ActionResult Edit(int id, Tantousha tantousha)
+        {
+            try
+            {
+                _context.EditTantousha(tantousha);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         [HttpGet]        public IActionResult Delete(string id)        {            return View(_context.GetAllTantousha().Find(Tantousha => Tantousha.cTANTOUSHA == id));        }        [HttpPost, ActionName("Delete")]        [ValidateAntiForgeryToken]        public IActionResult Delete(string id, Tantousha tantousha)        {            try            {                _context.DeleteTantousha(id);                ViewBag.AlertMsg = "Deleted Successfully";                return RedirectToAction("Index");            }            catch            {                return View();            }        }

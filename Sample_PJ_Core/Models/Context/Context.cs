@@ -49,18 +49,29 @@ namespace Sample_PJ_Core.Models.Context
             return list;
         }
 
-        public string CreateTantousha(Tantousha tantousha)
+        public void CreateTantousha(Tantousha tantousha)
         {
             using (MySqlConnection conn = GetConnection())
             {
                 //conn.Open(); 
-                string sql = "insert into m_j_tantousha (cTANTOUSHA,sTANTOUSHA,cBUMON,dHENKOU,cHENKOUSYA) values (" + "'" + tantousha.cTANTOUSHA + "','" + tantousha.sTANTOUSHA + "','" + tantousha.cBUMON + "','" + tantousha.dHENKOU + "','" + tantousha.cHENKOUSYA + "');";
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                string create_query = "insert into m_j_tantousha (cTANTOUSHA,sTANTOUSHA,cBUMON,dHENKOU,cHENKOUSYA) values (" + "'" + tantousha.cTANTOUSHA + "','" + tantousha.sTANTOUSHA + "','" + tantousha.cBUMON + "','" + tantousha.dHENKOU + "','" + tantousha.cHENKOUSYA + "');";
+                MySqlCommand cmd = new MySqlCommand(create_query, conn);
                 conn.Open();
                 cmd.ExecuteNonQuery();
                 conn.Close();
             }
-            return ("Data save Successfully");
+        }
+
+        public void EditTantousha(Tantousha tantousha)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                string edit_query = "update m_j_tantousha set sTANTOUSHA='" + tantousha.sTANTOUSHA + "',cBUMON='" + tantousha.cBUMON + "',dHENKOU='" + tantousha.dHENKOU + "',cHENKOUSYA='" + tantousha.cHENKOUSYA + "' where cTANTOUSHA='" + tantousha.cTANTOUSHA + "'";
+                MySqlCommand cmd = new MySqlCommand(edit_query, conn);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
         }
 
         public void DeleteTantousha(string id)        {            using (MySqlConnection conn = GetConnection())            {                string delete_query = "delete from m_j_tantousha where cTANTOUSHA='" + id + "'";                MySqlCommand cmd = new MySqlCommand(delete_query, conn);                conn.Open();                cmd.ExecuteNonQuery();                conn.Close();            }
