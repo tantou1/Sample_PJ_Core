@@ -12,6 +12,12 @@ namespace Sample_PJ_Core.Models.Editdata
         public string cTANTOUSHA { get; set; }
 
         public string sTANTOUSHA { get; set; }
+
+        public string cBUMON { get; set; }
+
+        public DateTime dHENKOU { get; set; }
+
+        public string cHENKOUSYA { get; set; }
         //自社担当者chanyamin
 
     }

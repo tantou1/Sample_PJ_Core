@@ -21,8 +21,9 @@
         </th>*@
             <th>担当者</th>
             <th>担当者名</th>
-            <th></th>
-            <th></th>
+            <th>部門</th>
+            <th>変更</th>
+            <th>変更者</th> 
         </tr>
     </thead>
     <tbody>
@@ -33,6 +34,15 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.sTANTOUSHA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cBUMON)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dHENKOU)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cHENKOUSYA)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
