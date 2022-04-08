@@ -31,9 +31,42 @@ namespace Sample_PJ_Core.Controllers
         //[HttpGet]
         //public IActionResult Create()
         //{
-        //    var cnt = new Context();
-        //    return View(cnt);
+        //    return View();
         //}
 
+        //[HttpPost]
+        //public async Task<IActionResult> Create(Tantousha tan)
+        //{
+        //    if(ModelState.IsValid)
+        //    {
+        //        _context.Add(tan);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(tan);
+        //}
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Create([Bind] Tantousha tantousha)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    string resp = _context.CreateTantousha(tantousha);
+                    TempData["msg"] = resp;
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["msg"] = ex.Message;
+            }
+            return View("Index");
+        }
     }
 }

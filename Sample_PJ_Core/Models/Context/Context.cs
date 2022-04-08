@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -37,12 +38,31 @@ namespace Sample_PJ_Core.Models.Context
                         list.Add(new Tantousha()
                         {
                             cTANTOUSHA = reader["cTANTOUSHA"].ToString(),
-                            sTANTOUSHA = reader["sTANTOUSHA"].ToString()
+                            sTANTOUSHA = reader["sTANTOUSHA"].ToString(),
+                            cBUMON = reader["cBUMON"].ToString(),
+                            dHENKOU = Convert.ToDateTime(reader["dHENKOU"].ToString()),
+                            cHENKOUSYA= reader["cHENKOUSYA"].ToString()
                         });
                     }
                 }
             }
             return list;
         }
+
+        public string CreateTantousha(Tantousha tantousha)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                //conn.Open(); 
+                string sql = "insert into m_j_tantousha (cTANTOUSHA,sTANTOUSHA,cBUMON,dHENKOU,cHENKOUSYA) values (" + "'" + tantousha.cTANTOUSHA + "','" + tantousha.sTANTOUSHA + "','" + tantousha.cBUMON + "','" + tantousha.dHENKOU + "','" + tantousha.cHENKOUSYA + "');";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            return ("Data save Successfully");
+        }
+
+
     }
 }
