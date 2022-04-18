@@ -77,5 +77,9 @@ namespace Sample_PJ_Core.Models.Context
         public void DeleteTantousha(string id)        {            using (MySqlConnection conn = GetConnection())            {                string delete_query = "delete from m_j_tantousha where cTANTOUSHA='" + id + "'";                MySqlCommand cmd = new MySqlCommand(delete_query, conn);                conn.Open();                cmd.ExecuteNonQuery();                conn.Close();            }
 
         }
+
+        public void DetailTantousha(string id)        {            using (MySqlConnection conn = GetConnection())            {                string detail_query = "select * from m_j_tantousha where cTANTOUSHA='" + id + "'";                MySqlCommand cmd = new MySqlCommand(detail_query, conn);                conn.Open();                cmd.ExecuteNonQuery();                conn.Close();            }
+
+        }
     }
 }
