@@ -85,7 +85,7 @@ namespace Sample_PJ_Core.Controllers
             {
                 return View();
             }
-        }
+        }//chanlayedit
 
         [HttpGet]        public IActionResult Delete(string id)        {            return View(_context.GetAllTantousha().Find(Tantousha => Tantousha.cTANTOUSHA == id));        }        [HttpPost, ActionName("Delete")]        [ValidateAntiForgeryToken]        public IActionResult Delete(string id, Tantousha tantousha)        {            try            {                _context.DeleteTantousha(id);                ViewBag.AlertMsg = "Deleted Successfully";                return RedirectToAction("Index");            }            catch            {                return View();            }        }
     }
