@@ -89,5 +89,10 @@ namespace Sample_PJ_Core.Controllers
 
         [HttpGet]        public IActionResult Delete(string id)        {            return View(_context.GetAllTantousha().Find(Tantousha => Tantousha.cTANTOUSHA == id));        }        [HttpPost, ActionName("Delete")]        [ValidateAntiForgeryToken]        public IActionResult Delete(string id, Tantousha tantousha)        {            try            {                _context.DeleteTantousha(id);                ViewBag.AlertMsg = "Deleted Successfully";                return RedirectToAction("Index");            }            catch            {                return View();            }        }
         //phyodelete
+
+        [HttpGet]        public IActionResult Details(string id)        {            return View(_context.GetAllTantousha().Find(Tantousha => Tantousha.cTANTOUSHA == id));        }        [HttpPost, ActionName("Delete")]        [ValidateAntiForgeryToken]        public IActionResult Details(string id, Tantousha tantousha)        {            try            {                _context.DetailTantousha(id);
+                //ViewBag.AlertMsg = "Deleted Successfully";
+                return RedirectToAction("Index");            }            catch            {                return View();            }
+        }
     }
 }
